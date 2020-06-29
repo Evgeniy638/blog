@@ -1,4 +1,5 @@
-const { Schema, Mongoose } = require('mongoose')
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const schema = new Schema({
     title: {
@@ -8,6 +9,9 @@ const schema = new Schema({
     body: {
         type: String
     }
+},
+{
+    timestamps: true
 })
 
-module.exports = Mongoose.module('Post', schema)
+module.exports = mongoose.model('Post', schema)

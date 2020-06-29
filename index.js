@@ -3,9 +3,11 @@ const config = require('./config.js');
 const database = require('./database');
 
 database()
-  .then(info => {
-    console.log(`Connected to ${info}: ${info.port}/${info.name}`)
-    console.log(info)
+  .then(db => {
+    const info = db.connections[0]
+    
+    console.log(`Connected to ${info.host}: ${info.port}/${info.name}`)
+
     app.listen(config.PORT)
   })
   .catch(() => {

@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const Post = require('./models/post')
 
@@ -7,23 +8,14 @@ const app = express()
 
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(
+  'javascripts', 
+  express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist'))
+)
 
-const data = ['hello', 'world', '!']
- 
-app.get('/', function (req, res) {
-  res.render('index', {data})
-})
-
-app.get('/create', function (req, res) {
-    res.render('create')
-})
-
-app.post('/create', (req, res) => {
-    const {title, body} = req.body
-
-    Post.create({ title, body })
-
-    res.redirect('/')
+app.get('/', (req, res) => {
+  res.render('index')
 })
 
 module.exports = app
