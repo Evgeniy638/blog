@@ -1,0 +1,22 @@
+.wrap {
+    align-self: center;
+    display: flex;
+}
+
+@media (min-width: 992px){
+    .wrap{
+        width: 970px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    .wrap{
+        width: 750px;
+    }
+}
+
+@media (max-width: 767px){
+    .wrap{
+        width: 100%;
+    }
+}
